@@ -39,6 +39,7 @@ class SearchController extends Controller
         $logoUrl = 'https://logo.clearbit.com/' . $url_host;
         $curl = curl_init($logoUrl);
         $image =  curl_exec($curl);
+        curl_close($curl);
         $info = curl_getinfo($curl);
 
         $site_info = new SiteInfo();
