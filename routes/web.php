@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/', 'SearchController@index');
+Route::get('/', 'SearchController@index')->name('home');
 Route::post('/', 'SearchController@store');
