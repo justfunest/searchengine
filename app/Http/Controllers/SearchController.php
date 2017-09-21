@@ -37,10 +37,19 @@ class SearchController extends Controller
         $url_ip = gethostbyname($url_host);
 
         $logoUrl = 'https://logo.clearbit.com/' . $url_host;
-        $curl = curl_init($logoUrl);
+
+        $options = array(
+            CURLOPT_URL => $logoUrl,
+            CURLOPT_HEADER => 0,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_TIMEOUT => 4
+        );
+
+        $curl = curl_init();
+        curl_setopt_array($curl, $options);
         $image =  curl_exec($curl);
-        curl_close($curl);
         $info = curl_getinfo($curl);
+        curl_close($curl);
 
         $site_info = new SiteInfo();
         $site_info->url = $url;
